@@ -47,7 +47,8 @@ ExternalProject_Add(SFML
                 SOURCE_DIR "${PROJECT_EXTERN_DIR}/sfml/"
                 CMAKE_ARGS
                     "-DBUILD_SHARED_LIBS=false"
-                    "-DCMAKE_INSTALL_PREFIX=${PROJECT_BUILD_DIR}")
+                    "-DCMAKE_INSTALL_PREFIX=${PROJECT_BUILD_DIR}"
+                    "-DSFML_OPENGL_ES=1")
 
 ExternalProject_Add(LUA
                     SOURCE_DIR "${PROJECT_EXTERN_DIR}/lua/"
@@ -132,7 +133,7 @@ target_link_libraries(nibble lualib)
 target_link_libraries(nibble giflib)
 
 if (UNIX)
-    target_link_libraries(nibble pthread udev X11 Xrandr GL openal FLAC ogg vorbis vorbisenc vorbisfile)
+    target_link_libraries(nibble pthread udev X11 Xrandr GL EGL GLESv1_CM openal FLAC ogg vorbis vorbisenc vorbisfile)
 endif (UNIX)
 
 if (WIN32)
